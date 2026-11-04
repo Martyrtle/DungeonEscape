@@ -70,6 +70,8 @@ void UTriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 {
 	if (OtherActor && OtherActor->ActorHasTag("PressurePlateActivator"))
 	{
+		activatorCount++;
+
 		if (!isTriggered)
 		{
 			Trigger(true);
@@ -82,7 +84,9 @@ void UTriggerComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor
 {
 	if (OtherActor && OtherActor->ActorHasTag("PressurePlateActivator"))
 	{
-		if (isTriggered)
+		activatorCount--;
+
+		if (isTriggered && activatorCount == 0)
 		{
 			Trigger(false);
 		}

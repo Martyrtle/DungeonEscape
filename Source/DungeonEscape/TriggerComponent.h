@@ -27,6 +27,10 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+private:
+	UPROPERTY(VisibleAnywhere)
+	int32 activatorCount = 0;
+
 public:
 	UPROPERTY(EditAnywhere)
 	bool isPressurePlate = false;
