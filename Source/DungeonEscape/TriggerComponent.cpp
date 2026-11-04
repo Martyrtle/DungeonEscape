@@ -56,7 +56,7 @@ void UTriggerComponent::Trigger(bool newTriggerValue)
 
 	if (mover)
 	{
-		mover->shouldMove = isTriggered;
+		mover->SetShouldMove(isTriggered);
 	}
 	else
 	{
