@@ -49,8 +49,6 @@ void UMoverComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		FVector newLocation = FMath::VInterpConstantTo(currentLocation, targetLocation, DeltaTime, speed);
 
 		GetOwner()->SetActorLocation(newLocation);
-
-		UE_LOG(LogTemp, Display, TEXT("Mover is moving!"));
 	}
 
 }
