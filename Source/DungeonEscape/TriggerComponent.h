@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
+#include "MoverComponent.h"
 #include "TriggerComponent.generated.h"
 
 /**
@@ -14,17 +15,22 @@ class DUNGEONESCAPE_API UTriggerComponent : public UBoxComponent
 {
 	GENERATED_BODY()
 
-	public:
-		// Sets default values for this component's properties
-		UTriggerComponent();
+public:
+	// Sets default values for this component's properties
+	UTriggerComponent();
 
-	protected:
-		// Called when the game starts
-		virtual void BeginPlay() override;
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
 
-	public:
-		// Called every frame
-		virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+public:
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	UPROPERTY(EditAnywhere)
+	AActor* moverActor;
+
+	UMoverComponent* mover;
 
 
 };

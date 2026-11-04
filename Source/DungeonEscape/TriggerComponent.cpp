@@ -17,6 +17,24 @@ void UTriggerComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (moverActor != nullptr)
+	{
+		mover = moverActor->FindComponentByClass<UMoverComponent>();
+		if (mover != nullptr)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Successfully found the mover component!"));
+			mover->shouldMove = true;
+		}
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("Failed to find mover component!"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("Move Actor is nullptr"));
+	}
+
 }
 
 
