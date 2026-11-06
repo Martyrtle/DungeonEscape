@@ -69,12 +69,6 @@ void ADungeonEscapeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	}
 }
 
-void TestRefFunc(FVector& outTestVector)
-{
-	outTestVector.X += 3.0f;
-	outTestVector.Y+= 6.0f;
-	outTestVector.Z += 9.0f;
-}
 
 void ADungeonEscapeCharacter::Interact()
 {
@@ -85,12 +79,18 @@ void ADungeonEscapeCharacter::Interact()
 	FCollisionShape interactionShpere = FCollisionShape::MakeSphere(interactionSphereRadius);
 	DrawDebugSphere(GetWorld(), end, interactionSphereRadius, 20, FColor::Blue, false, 5.0f);
 
-	FVector testVector = FVector::One();
-	UE_LOG(LogTemp, Display, TEXT("TestVector Before Func: %s"), *testVector.ToCompactString());
-	TestRefFunc(testVector);
-	UE_LOG(LogTemp, Display, TEXT("TestVector After Func: %s"), *testVector.ToCompactString());
+	FHitResult hitResult;
+	bool hasHit = GetWorld()->SweepSingleByChannel(hitResult, start, end, FQuat::Identity, ECC_GameTraceChannel2, interactionShpere);
 
-	//GetWorld()->SweepSingleByChannel();
+	if (hasHit)
+	{
+		AActor* hitActor = hitResult.GetActor();
+		UE_LOG(LogTemp, Display, TEXT("Hit Actor is %s"), *hitActor->GetActorNameOrLabel());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("No actor hit!"));
+	}
 }
 
 
