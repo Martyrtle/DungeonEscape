@@ -36,6 +36,7 @@ void ALock::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	UE_LOG(LogTemp, Display, TEXT("Time since level began play: %fs"), GetWorld()->TimeSeconds);
 }
 
 
