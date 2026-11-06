@@ -69,6 +69,13 @@ void ADungeonEscapeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	}
 }
 
+void TestRefFunc(FVector& outTestVector)
+{
+	outTestVector.X += 3.0f;
+	outTestVector.Y+= 6.0f;
+	outTestVector.Z += 9.0f;
+}
+
 void ADungeonEscapeCharacter::Interact()
 {
 	FVector start = FirstPersonCameraComponent->GetComponentLocation();
@@ -78,13 +85,10 @@ void ADungeonEscapeCharacter::Interact()
 	FCollisionShape interactionShpere = FCollisionShape::MakeSphere(interactionSphereRadius);
 	DrawDebugSphere(GetWorld(), end, interactionSphereRadius, 20, FColor::Blue, false, 5.0f);
 
-	FVector testVector = FVector(1.0f, 1.0f, 1.0f);
-	FVector& testVectorRef = testVector;
-	UE_LOG(LogTemp, Display, TEXT("TestVector: %s, TestVectorRef: %s"), *testVector.ToCompactString(), *testVectorRef.ToCompactString());
-	testVectorRef.X = 3.14f;
-	testVectorRef.Y = 1.62f;
-	testVectorRef.Z = 2.72f;
-	UE_LOG(LogTemp, Display, TEXT("TestVector: %s, TestVectorRef: %s"), *testVector.ToCompactString(), *testVectorRef.ToCompactString());
+	FVector testVector = FVector::One();
+	UE_LOG(LogTemp, Display, TEXT("TestVector Before Func: %s"), *testVector.ToCompactString());
+	TestRefFunc(testVector);
+	UE_LOG(LogTemp, Display, TEXT("TestVector After Func: %s"), *testVector.ToCompactString());
 
 	//GetWorld()->SweepSingleByChannel();
 }
