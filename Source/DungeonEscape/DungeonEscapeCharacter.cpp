@@ -94,7 +94,9 @@ void ADungeonEscapeCharacter::Interact()
 			ACollectableItem* collectableItem = Cast<ACollectableItem>(hitActor);
 			if (collectableItem)
 			{
-				UE_LOG(LogTemp, Display, TEXT("Collectable Item with name %s"), *collectableItem->itemName);
+				itemList.Add(collectableItem->itemName);
+
+				collectableItem->Destroy();
 			}
 		}
 		else if (hitActor->ActorHasTag("Lock"))

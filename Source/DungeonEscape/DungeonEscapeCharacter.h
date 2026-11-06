@@ -101,5 +101,9 @@ public:
 
 	void Interact();
 
+private:
+	UPROPERTY(VisibleAnywhere)
+	TArray<FString> itemList;
+
 };
 
