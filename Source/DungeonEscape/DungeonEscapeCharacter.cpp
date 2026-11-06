@@ -72,8 +72,11 @@ void ADungeonEscapeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 void ADungeonEscapeCharacter::Interact()
 {
 	FVector start = FirstPersonCameraComponent->GetComponentLocation();
-	FVector end = start + FirstPersonCameraComponent->GetForwardVector() * maxInterationDistance;
-	DrawDebugLine(GetWorld(), start, end, FColor::Purple, false, 5.0f);
+	FVector end = start + FirstPersonCameraComponent->GetForwardVector() * maxInteractionDistance;
+	DrawDebugLine(GetWorld(), start, end, FColor::Red, false, 5.0f);
+
+	FCollisionShape interactionShpere = FCollisionShape::MakeSphere(interactionSphereRadius);
+	DrawDebugSphere(GetWorld(), end, interactionSphereRadius, 20, FColor::Blue, false, 5.0f);
 
 	//GetWorld()->SweepSingleByChannel();
 }
