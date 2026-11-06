@@ -78,6 +78,14 @@ void ADungeonEscapeCharacter::Interact()
 	FCollisionShape interactionShpere = FCollisionShape::MakeSphere(interactionSphereRadius);
 	DrawDebugSphere(GetWorld(), end, interactionSphereRadius, 20, FColor::Blue, false, 5.0f);
 
+	FVector testVector = FVector(1.0f, 1.0f, 1.0f);
+	FVector& testVectorRef = testVector;
+	UE_LOG(LogTemp, Display, TEXT("TestVector: %s, TestVectorRef: %s"), *testVector.ToCompactString(), *testVectorRef.ToCompactString());
+	testVectorRef.X = 3.14f;
+	testVectorRef.Y = 1.62f;
+	testVectorRef.Z = 2.72f;
+	UE_LOG(LogTemp, Display, TEXT("TestVector: %s, TestVectorRef: %s"), *testVector.ToCompactString(), *testVectorRef.ToCompactString());
+
 	//GetWorld()->SweepSingleByChannel();
 }
 
