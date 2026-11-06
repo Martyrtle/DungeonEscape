@@ -86,6 +86,15 @@ void ADungeonEscapeCharacter::Interact()
 	{
 		AActor* hitActor = hitResult.GetActor();
 		UE_LOG(LogTemp, Display, TEXT("Hit Actor is %s"), *hitActor->GetActorNameOrLabel());
+
+		if (hitActor->ActorHasTag("CollectableItem"))
+		{
+			UE_LOG(LogTemp, Display, TEXT("Collectable Item"));
+		}
+		else if (hitActor->ActorHasTag("Lock"))
+		{
+			UE_LOG(LogTemp, Display, TEXT("Lock"));
+		}
 	}
 	else
 	{
