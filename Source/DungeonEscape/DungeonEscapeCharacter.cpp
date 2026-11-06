@@ -116,6 +116,12 @@ void ADungeonEscapeCharacter::Interact()
 						UE_LOG(LogTemp, Display, TEXT("Key Item not in inventory"))
 					}
 				}
+				else
+				{
+					itemList.Add(lockActor->keyItemName);
+					lockActor->SetIsKeyPlaced(false);
+
+				}
 			}
 		}
 	}
